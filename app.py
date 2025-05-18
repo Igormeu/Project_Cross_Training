@@ -1,5 +1,6 @@
 from app import enviroment, db
 from app.model.alunos import Aluno
+from app.model.pagamentos import Pagamento
 
 with enviroment.app_context():
     db.create_all()
