@@ -14,3 +14,5 @@ class Aluno (db.Model):
     data_matricula = db.Column(db.Date, nullable = False)
     data_vencimento = db.Column(db.Date, nullable = False)
     data_desligamento = db.Column(db.Date, nullable = False)
+
+    
