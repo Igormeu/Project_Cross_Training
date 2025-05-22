@@ -6,9 +6,9 @@ class Pagamento (db.Model):
     __table_args__ = {'sqlite_autoincrement':True}
 
     id_pagamentos = db.Column(db.Integer, primary_key=True)
-    valor = db.Column(db.Float, nullable= True)
-    tipo =  db.Column(db.String(10), nullable = True)
-    data_pagamento = db.Column(db.Date, nullable= True)
+    valor = db.Column(db.Float, nullable= False)
+    tipo =  db.Column(db.String(10), nullable = False)
+    data_pagamento = db.Column(db.Date, nullable= False)
 
-    aluno_id = db.Column(db.Integer, db.ForeignKey('alunos.id'), nullable= True)
+    aluno_id = db.Column(db.Integer, db.ForeignKey('alunos.id'), nullable= False)
     aluno = db.relationship("Aluno", backref="pagamentos")
