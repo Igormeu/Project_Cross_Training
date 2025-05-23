@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Administrador\OneDrive\Documentos\CODIGOS\Curso .PY\Project_Cross_Training\Project_Cross_Training\env
+set VIRTUAL_ENV=C:\Users\Pichau\Desktop\Project_Cross_Training\env
 
 if not defined PROMPT set PROMPT=$P$G
 

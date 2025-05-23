@@ -15,4 +15,25 @@ class Aluno (db.Model):
     data_vencimento = db.Column(db.Date, nullable = True)
     data_desligamento = db.Column(db.Date, nullable = True)
 
+def __init__(self, nome, endereco, cidade, estado, telefone, status, matricula, vencimento, desligamento):
+    self.nome = nome
+    self.endereco = endereco
+    self.cidade = cidade
+    self.estado = estado
+    self.telefone = telefone
+    self.status = status
+    self.data_matricula = matricula
+    self.data_vencimento = vencimento
+    self.data_desligamento = desligamento
     
+def cadastrarAluno():
+    pass
+
+def listarAlunos():
+    pass
+
+def editarAluno():
+    pass
+
+def excluirAluno():
+    pass
