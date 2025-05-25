@@ -8,7 +8,7 @@ enviroment.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(enviroment)
 
-from app.view import alunos_view
-from app.view import pagamentos_view
+from app.routes.alunos_rotas import aluno_bp
+enviroment.register_blueprint(aluno_bp)
 
 
