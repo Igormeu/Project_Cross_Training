@@ -33,7 +33,7 @@ def atualizar_aluno(id):
     aluno = Aluno.query.get(id)
     if not aluno:
         return jsonify({'erro': 'Aluno não encontrado'}), 404
-
+    
     data = request.json
     try:
         aluno.nome = data.get('nome', aluno.nome)
@@ -52,8 +52,15 @@ def desmatricular_aluno(id):
     aluno = Aluno.query.get(id)
     if not aluno:
         return jsonify({'erro': 'Aluno não encontrado'}), 404
+    elif aluno.status == 'Desligado' or aluno.data_desligamento is not None:
+        return jsonify({'erro': 'Aluno já está desligado.'}), 400
+    elif aluno.data_matricula is None:
+        return jsonify({'erro': 'Aluno não possui matrícula ativa para ser desligado.'}), 400
     try:
-        aluno.desligarAluno()
+        aluno.data_desligamento = datetime.now().date()
+        aluno.data_matricula = None
+        aluno.data_vencimento = None
+        aluno.status = "Desligado"
         db.session.commit()
         return jsonify({'mensagem': 'Aluno desligado com sucesso'}), 200
     except Exception as e:
@@ -64,8 +71,11 @@ def deletar_aluno(id):
     aluno = Aluno.query.get(id)
     if not aluno:
         return jsonify({'erro': 'Aluno não encontrado'}), 404
+    elif aluno.status != 'Desligado':
+        return jsonify({'erro': 'Aluno ainda está ativo. Desligue o aluno antes de deletar.'}), 400
     try:
-        aluno.deletarAluno()
+        db.session.delete(aluno)
+        db.session.commit()
         return jsonify({'mensagem': 'Aluno deletado com sucesso'}), 200
     except Exception as e:
         db.session.rollback()
