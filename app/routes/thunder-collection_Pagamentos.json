@@ -1,0 +1,40 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Pagamentos",
+    "collectionId": "4d5e7c92-e344-436c-8082-35efe022bdcf",
+    "dateExported": "2025-05-29T22:52:41.993Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "a67fc092-6b36-423f-a80f-07dabb45b6fa",
+            "colId": "4d5e7c92-e344-436c-8082-35efe022bdcf",
+            "containerId": "",
+            "name": "Listar Pagamentos",
+            "url": "http://127.0.0.1:8080/pagamentos/2",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2025-05-29T22:51:23.376Z",
+            "modified": "2025-05-29T22:51:23.376Z",
+            "headers": []
+        },
+        {
+            "_id": "034c139d-ac70-4f2a-a2ec-a8b9577c347c",
+            "colId": "4d5e7c92-e344-436c-8082-35efe022bdcf",
+            "containerId": "",
+            "name": "Criar Pagamento",
+            "url": "http://127.0.0.1:8080/pagamentos/2",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2025-05-29T22:51:29.789Z",
+            "modified": "2025-05-29T22:51:29.789Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"valor\":245.6,\n  \"tipo\":\"Cartão\"\n  \n  \n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "xRwTfjdgmKFprhDXbj_lfc_3F2s129eZayEyGrxuujkRXkTjMsYo-A6xkEzIJtoW8kXNoq33Y8RniDHtd5kLJw"
+}
