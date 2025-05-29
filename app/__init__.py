@@ -10,5 +10,7 @@ db = SQLAlchemy(enviroment)
 
 from app.routes.alunos_rotas import aluno_bp
 enviroment.register_blueprint(aluno_bp)
+from app.routes.pagamentos_rotas import pagamento_bp
+enviroment.register_blueprint(pagamento_bp)
 
 
