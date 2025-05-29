@@ -26,7 +26,18 @@ def criar_aluno():
 
 def listar_alunos():
     alunos = Aluno.query.all()
-    resultado = [a.serializeJSON() for a in alunos]
+    resultado = [{
+        'id': a.id,
+        'nome': a.nome,
+        'endereco': a.endereco,
+        'cidade': a.cidade,
+        'estado': a.estado,
+        'telefone': a.telefone,
+        'status': a.status,
+        'data_matricula': a.data_matricula.strftime("%Y-%m-%d") if a.data_matricula else None,
+        'data_vencimento': a.data_vencimento.strftime("%Y-%m-%d") if a.data_vencimento else None,
+        'data_desligamento': a.data_desligamento.strftime("%Y-%m-%d") if a.data_desligamento else None,
+    } for a in alunos]
     return jsonify(resultado), 200
 
 def atualizar_aluno(id):
