@@ -20,8 +20,11 @@ def criar_pagamento(id):
         if dados.get('tipo') not in ['Cartão', 'Dinheiro']:
             return jsonify({'erro': 'Tipo inválido de pagamento'})
         
-        
-        
+        try:
+            valor = float(dados['valor'])
+        except ValueError:
+            return jsonify({'erro': 'Digite um valor de pagamento válido'}), 400
+           
         novo_pagamento = Pagamento(
             aluno_id=id,
             data_pagamento = data_pagamento,
@@ -49,6 +52,7 @@ def criar_pagamento(id):
         return jsonify({'mensagem': 'Pagamento criado com sucesso'}), 201
 
     except Exception as e:
+         db.session.rollback()
          return jsonify({'erro': str(e)}), 400
 
 def listar_pagamentos(id):
@@ -74,7 +78,53 @@ def listar_pagamentos(id):
         return jsonify(resultado)
     
     except Exception as e:
+         db.session.rollback()
          return jsonify({'erro': str(e)}), 400
 
+def atualizar_pagamento(id_pagamento):
+    try:
+        pagamento = Pagamento.query.get(id_pagamento)
+
+        if not pagamento:
+            return jsonify({'erro': 'Pagamento nao encontrado'}), 404
+
+        dados = request.json
+
+        if not dados.get('valor') or not dados.get('tipo'):
+            return jsonify({'erro': 'Digite os campos de tipo e valor'})
+
+        if dados.get('tipo') not in ['Cartão', 'Dinheiro']:
+            return jsonify({'erro': 'Tipo inválido de pagamento'})
+        
+        try:
+            valor = float(dados['valor'])
+        except ValueError:
+            return jsonify({'erro': 'Digite um valor de pagamento válido'}), 400
+        
+        pagamento.valor = dados['valor']
+        pagamento.tipo = dados['tipo']
+        db.session.commit()
+        return jsonify({'mensagem': 'Pagamento atualizado com sucesso'}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'erro': str(e)}), 400
+    
+
+def deletar_pagamento(id_pagamento):
+    try:
+        pagamento = Pagamento.query.get(id_pagamento)
+
+        if not pagamento:
+            return jsonify({'erro': 'Pagamento nao encontrado'}), 404
+        
+        db.session.delete(pagamento)
+        db.session.commit()
+        return jsonify({'mensagem': 'Pagamento deletado com sucesso'}), 200
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'erro': str(e)}), 400
+    
 
 
