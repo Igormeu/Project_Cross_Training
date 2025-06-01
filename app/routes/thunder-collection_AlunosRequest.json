@@ -1,0 +1,76 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "AlunosRequest",
+    "collectionId": "f7c35c0c-31ee-439a-a2db-bf53073708aa",
+    "dateExported": "2025-05-29T22:51:44.674Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "5bda0203-3747-4aeb-86db-d2d5dc5b14ba",
+            "colId": "f7c35c0c-31ee-439a-a2db-bf53073708aa",
+            "containerId": "",
+            "name": "Deletar Aluno",
+            "url": "http://127.0.0.1:8080/alunos/1",
+            "method": "DELETE",
+            "sortNum": 10000,
+            "created": "2025-05-29T22:27:18.364Z",
+            "modified": "2025-05-29T22:27:18.364Z",
+            "headers": []
+        },
+        {
+            "_id": "674cff49-d948-4e9b-b1a2-4d6b7e1fe66e",
+            "colId": "f7c35c0c-31ee-439a-a2db-bf53073708aa",
+            "containerId": "",
+            "name": "Obter Dados",
+            "url": "http://127.0.0.1:8080/alunos",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-05-29T22:27:32.100Z",
+            "modified": "2025-05-29T22:27:32.100Z",
+            "headers": []
+        },
+        {
+            "_id": "6d8121ac-5a8f-48fe-abb1-01b0bfbfdfcc",
+            "colId": "f7c35c0c-31ee-439a-a2db-bf53073708aa",
+            "containerId": "",
+            "name": "Atualizar Aluno",
+            "url": "http://127.0.0.1:8080/alunos/14",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2025-05-29T22:27:38.763Z",
+            "modified": "2025-05-29T22:27:38.763Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"estado\":\"CE\"\n  \n  \n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "8ebaca86-eaf4-4a14-b88a-fcbd86757cde",
+            "colId": "f7c35c0c-31ee-439a-a2db-bf53073708aa",
+            "containerId": "",
+            "name": "Desmatricular Aluno",
+            "url": "http://127.0.0.1:8080/desmatricular alunos/1",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2025-05-29T22:27:44.252Z",
+            "modified": "2025-05-29T22:27:44.252Z",
+            "headers": []
+        },
+        {
+            "_id": "782fabbb-3989-4424-920f-5b59b3781587",
+            "colId": "f7c35c0c-31ee-439a-a2db-bf53073708aa",
+            "containerId": "",
+            "name": "Deletar Aluno",
+            "url": "http://127.0.0.1:8080/alunos/1",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2025-05-29T22:28:12.300Z",
+            "modified": "2025-05-29T22:28:12.300Z",
+            "headers": []
+        }
+    ],
+    "ref": "CWXYv-cbuxmGqu8KZjdvkpUmbHbpN43OPv96KyzHSciGonTDyG974xi9_NWlHhw-jbvLJblAO3PCXl57Y_SB6Q"
+}
