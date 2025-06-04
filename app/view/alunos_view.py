@@ -1,7 +1,7 @@
 from flask import jsonify, request
 from app.model.alunos import Aluno
 from app import db
-from datetime import datetime
+from datetime import datetime,timedelta
 
 def criar_aluno():
     data = request.json
