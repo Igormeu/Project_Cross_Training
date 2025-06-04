@@ -6,6 +6,13 @@ from datetime import datetime
 def criar_aluno():
     data = request.json
     try:
+        if data.get('data_matricula') and not data.get('data_vencimento'):
+            data_vencimento = datetime.strptime(data['data_matricula'], "%Y-%m-%d") + timedelta(days=30)  
+        elif data.get('data_vencimento'):
+            data_vencimento = datetime.strptime(data['data_vencimento'], "%Y-%m-%d")
+        else:
+            data_vencimento = None
+
         aluno = Aluno(
             nome = data['nome'],
             endereco = data['endereco'],
@@ -14,8 +21,8 @@ def criar_aluno():
             telefone = data['telefone'],
             status = data.get('status', 'Cadastrado'),
             data_matricula = datetime.strptime(data['data_matricula'], "%Y-%m-%d") if data.get('data_matricula') else None,
-            data_vencimento = datetime.strptime(data['data_vencimento'], "%Y-%m-%d") if data.get('data_vencimento') else None,
-            data_desligamento = datetime.strptime(data['data_desligamento'], "%Y-%m-%d") if data.get('data_desligamento') else None
+            data_vencimento = data_vencimento,
+            data_desligamento = None
         )
         db.session.add(aluno)
         db.session.commit()
@@ -23,7 +30,7 @@ def criar_aluno():
     except Exception as e:
         db.session.rollback()
         return jsonify({'erro': str(e)}), 400
-
+    
 def listar_alunos():
     alunos = Aluno.query.all()
     resultado = [{
