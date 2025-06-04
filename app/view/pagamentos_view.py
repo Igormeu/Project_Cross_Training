@@ -84,25 +84,25 @@ def listar_pagamentos(id):
 def atualizar_pagamento(id_pagamento):
     try:
         pagamento = Pagamento.query.get(id_pagamento)
-
         if not pagamento:
-            return jsonify({'erro': 'Pagamento nao encontrado'}), 404
+            return jsonify({'erro': 'Pagamento não encontrado'}), 404
 
         dados = request.json
 
-        if not dados.get('valor') or not dados.get('tipo'):
-            return jsonify({'erro': 'Digite os campos de tipo e valor'})
+        if not dados.get('valor') and not dados.get('tipo'):
+            return jsonify({'erro': 'Envie ao menos o campo "valor" ou "tipo" para atualizar'}), 400
 
-        if dados.get('tipo') not in ['Cartão', 'Dinheiro']:
-            return jsonify({'erro': 'Tipo inválido de pagamento'})
-        
-        try:
-            valor = float(dados['valor'])
-        except ValueError:
-            return jsonify({'erro': 'Digite um valor de pagamento válido'}), 400
-        
-        pagamento.valor = dados['valor']
-        pagamento.tipo = dados['tipo']
+        if 'tipo' in dados:
+            if dados['tipo'] not in ['Cartão', 'Dinheiro']:
+                return jsonify({'erro': 'Tipo inválido de pagamento'}), 400
+            pagamento.tipo = dados['tipo']
+
+        if 'valor' in dados:
+            try:
+                pagamento.valor = float(dados['valor'])
+            except ValueError:
+                return jsonify({'erro': 'Digite um valor de pagamento válido'}), 400
+
         db.session.commit()
         return jsonify({'mensagem': 'Pagamento atualizado com sucesso'}), 200
 
